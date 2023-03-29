@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
@@ -46,6 +47,9 @@ public class App {
             }
             System.out.println("\n");
         }
+        // Cria o diretõrio caso não exista
+        var diretorio = new File("saida");
+        diretorio.mkdir();
 
         var geradora = new GeradoraDeFigurinhas();
         for (Map<String, String> filme : listaDeFilmes) {
@@ -59,6 +63,7 @@ public class App {
 
             System.out.println(titulo);
             System.out.println();
+            break;
         }
 
     }
