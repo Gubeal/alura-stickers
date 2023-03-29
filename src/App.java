@@ -23,6 +23,12 @@ public class App {
         // extrair só os dados que interessam (título, poster classificação)
         var parser = new JsonParser();
         List<Map<String, String>> listaDeFilmes = parser.parse(body);
+
+        // Como Decorar o terminal:
+        // https://www.alura.com.br/artigos/decorando-terminal-cores-emojis
+        // O que ẽ JSON?: https://www.alura.com.br/artigos/o-que-e-json
+        // VSCode para rodar JAVA:
+        // https://www.alura.com.br/artigos/desenvolvendo-aplicacoes-java-vs-code
         // exibir e manipular os dados
         // System.out.println(listaDeFilmes.get(0));
         for (int i = 0; i < 3; i++) {
