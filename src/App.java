@@ -10,7 +10,8 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         // fazer uma conexão HTTP e buscar os top 250 filmes
-        String url = "https://imdb-api.com/en/API/Top250Movies/_ty4w35mj";
+        String imdbKey = System.getenv("IMDB_API_KEY");
+        String url = "https://imdb-api.com/en/API/Top250Movies/" + imdbKey;
 
         URI endereco = URI.create(url);
         var client = HttpClient.newHttpClient();
