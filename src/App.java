@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
@@ -54,12 +55,24 @@ public class App {
         var geradora = new GeradoraDeFigurinhas();
         for (Map<String, String> filme : listaDeFilmes) {
             String urlImagem = filme.get("image");
+            String urlImagemMaior = urlImagem.replaceFirst("(@?\\.)([0-9A-Z,_]+).jpg$", "$1.jpg");
             String titulo = filme.get("title");
+            double classificacao = Double.parseDouble(filme.get("imDbRating"));
 
-            InputStream inputStream = new URL(urlImagem).openStream();
+            InputStream imagemSobreposicao;
+            String textoFigurinha;
+            if (classificacao >= 8.0) {
+                textoFigurinha = "TOPZERA";
+                imagemSobreposicao = new FileInputStream(new File("sobreposicao/bom.jpg"));
+            } else {
+                textoFigurinha = "HMMMMM...";
+                imagemSobreposicao = new FileInputStream(new File("sobreposicao/ruim.jpg"));
+            }
+
+            InputStream inputStream = new URL(urlImagemMaior).openStream();
             String nomeArquivo = "saida/" + titulo + ".png";
 
-            geradora.cria(inputStream, nomeArquivo);
+            geradora.cria(inputStream, nomeArquivo, textoFigurinha, imagemSobreposicao);
 
             System.out.println(titulo);
             System.out.println();

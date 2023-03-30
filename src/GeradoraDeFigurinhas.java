@@ -18,7 +18,8 @@ import javax.imageio.ImageIO;
 
 public class GeradoraDeFigurinhas {
 
-    public void cria(InputStream inputStream, String nomeArquivo) throws Exception {
+    public void cria(InputStream inputStream, String nomeArquivo, String texto, InputStream inputStreamSobreposicao)
+            throws Exception {
         // Leitura da imagem
         // InputStream inputStream = new FileInputStream(new File("entrada/filme.jpg"));
         // InputStream inputStream = new URL(
@@ -35,15 +36,18 @@ public class GeradoraDeFigurinhas {
 
         // copiar a imagem original pra nova imagem (em memória)
         Graphics2D graphics = (Graphics2D) novaImagem.getGraphics();
-
         graphics.drawImage(imagemOriginal, 0, 0, null);
+
+        BufferedImage imagemSobreposicao = ImageIO.read(inputStreamSobreposicao);
+        int posicaoImagemSobreposicaoY = novaAltura - imagemSobreposicao.getHeight();
+        graphics.drawImage(imagemSobreposicao, 0, posicaoImagemSobreposicaoY, null);
         // Configurar a fonte
         Font fonte = new Font("Impact", Font.BOLD, 80);
         graphics.setColor(Color.YELLOW);
         graphics.setFont(fonte);
 
         // escrever uma frase na nova imagem]
-        String texto = "TOPZERA";
+        // String texto = "TOPZERA";
         FontMetrics fontMetrics = graphics.getFontMetrics();
         Rectangle2D retangulo = fontMetrics.getStringBounds(texto, graphics);
         int larguraTexto = (int) retangulo.getWidth();
