@@ -1,25 +1,16 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.net.URI;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
-import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws Exception {
 
-        // fazer uma conexão HTTP e buscar os top 250 séries
-        String imdbKey = System.getenv("IMDB_API_KEY");
-        // String url = "https://imdb-api.com/en/API/MostPopularMovies/" + imdbKey;
-        // ExtratorDeConteudo extrator = new ExtratorDeConteudoDoIMDB();
+        API api = API.IMDB_TOP_SERIES;
 
-        String url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2022-06-14";
-        ExtratorDeConteudo extrator = new ExtratorDeConteudoDaNasa();
+        String url = api.getUrl();
+        ExtratorDeConteudo extrator = api.getExtrator();
 
         var http = new ClienteHttp();
         String json = http.buscaDados(url);
