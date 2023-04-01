@@ -25,12 +25,11 @@ public class GeradoraDeFigurinhas {
         // InputStream inputStream = new URL(
         // "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@.jpg")
         // .openStream();
-
         BufferedImage imagemOriginal = ImageIO.read(inputStream);
+
         // cria nova imagem em memõria com transparência e com tamanho novo
         int largura = imagemOriginal.getWidth();
         int altura = imagemOriginal.getHeight();
-
         int novaAltura = altura + 200;
         BufferedImage novaImagem = new BufferedImage(largura, novaAltura, BufferedImage.TRANSLUCENT);
 
@@ -41,6 +40,7 @@ public class GeradoraDeFigurinhas {
         BufferedImage imagemSobreposicao = ImageIO.read(inputStreamSobreposicao);
         int posicaoImagemSobreposicaoY = novaAltura - imagemSobreposicao.getHeight();
         graphics.drawImage(imagemSobreposicao, 0, posicaoImagemSobreposicaoY, null);
+
         // Configurar a fonte
         Font fonte = new Font("Impact", Font.BOLD, 80);
         graphics.setColor(Color.YELLOW);
@@ -75,8 +75,4 @@ public class GeradoraDeFigurinhas {
 
     }
 
-    public static void main(String[] args) throws Exception {
-        var geradora = new GeradoraDeFigurinhas();
-        geradora.cria();
-    }
 }
