@@ -15,12 +15,11 @@ public class App {
 
         // fazer uma conexão HTTP e buscar os top 250 séries
         String imdbKey = System.getenv("IMDB_API_KEY");
-        String url = "https://imdb-api.com/en/API/MostPopularMovies/" + imdbKey;
-        ExtratorDeConteudo extrator = new ExtratorDeConteudoDoIMDB();
+        // String url = "https://imdb-api.com/en/API/MostPopularMovies/" + imdbKey;
+        // ExtratorDeConteudo extrator = new ExtratorDeConteudoDoIMDB();
 
-        // String url =
-        // "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2022-06-14";
-        // ExtratorDeConteudo extrator = new ExtratorDeConteudoDaNasa();
+        String url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2022-06-14";
+        ExtratorDeConteudo extrator = new ExtratorDeConteudoDaNasa();
 
         var http = new ClienteHttp();
         String json = http.buscaDados(url);
@@ -34,12 +33,12 @@ public class App {
 
             Conteudo conteudo = conteudos.get(i);
 
-            InputStream inputStream = new URL(conteudo.getUrlImagem()).openStream();
-            String nomeArquivo = "saida/" + conteudo.getTitulo() + ".png";
+            InputStream inputStream = new URL(conteudo.urlImagem()).openStream();
+            String nomeArquivo = "saida/" + conteudo.titulo() + ".png";
             InputStream imagemSobreposicao = new FileInputStream(new File("sobreposicao/bom.jpg"));
             geradora.cria(inputStream, nomeArquivo, "TOPZERA", imagemSobreposicao);
 
-            System.out.println(conteudo.getTitulo());
+            System.out.println(conteudo.titulo());
             System.out.println();
         }
 
