@@ -5,7 +5,9 @@ public enum API {
     IMDB_TOP_SERIES("https://imdb-api.com/en/API/Top250TVs/" + System.getenv("IMDB_API_KEY"),
             new ExtratorDeConteudoDoIMDB()),
     NASA("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2022-06-12&end_date=2022-06-14",
-            new ExtratorDeConteudoDaNasa());
+            new ExtratorDeConteudoDaNasa()),
+    LOCAL("http://localhost:8080/linguagens",
+            new ExtratorDeConteudoDoIMDB());
 
     private String url;
     private ExtratorDeConteudo extrator;

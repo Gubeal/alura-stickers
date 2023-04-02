@@ -37,9 +37,9 @@ public class GeradoraDeFigurinhas {
         Graphics2D graphics = (Graphics2D) novaImagem.getGraphics();
         graphics.drawImage(imagemOriginal, 0, 0, null);
 
-        BufferedImage imagemSobreposicao = ImageIO.read(inputStreamSobreposicao);
-        int posicaoImagemSobreposicaoY = novaAltura - imagemSobreposicao.getHeight();
-        graphics.drawImage(imagemSobreposicao, 0, posicaoImagemSobreposicaoY, null);
+        // BufferedImage imagemSobreposicao = ImageIO.read(inputStreamSobreposicao);
+        // int posicaoImagemSobreposicaoY = novaAltura - imagemSobreposicao.getHeight();
+        // graphics.drawImage(imagemSobreposicao, 0, posicaoImagemSobreposicaoY, null);
 
         // Configurar a fonte
         Font fonte = new Font("Impact", Font.BOLD, 80);
